@@ -17,9 +17,25 @@ public class ClienteBO {
         dto.setNomeCliente(entity.getNomeCliente());
         dto.setNumeroCpf(entity.getNumeroCpf());
         dto.setNumeroCnpj(entity.getNumeroCnpj());
-        dto.setDataCadastro(entity.getDataCadastro());
+        //dto.setDataCadastro(entity.getDataCadastro());
 
         return dto;
+    }
+
+    public ClienteEntity parseToEntity(ClienteDTO dto, ClienteEntity entity){
+        if (entity == null)
+             entity = new ClienteEntity();
+
+        if (dto == null)
+            return entity;
+
+        entity.setIdCliente(dto.getIdCliente());
+        entity.setNomeCliente(dto.getNomeCliente());
+        entity.setNumeroCpf(dto.getNumeroCpf());
+        entity.setNumeroCnpj(dto.getNumeroCnpj());
+        //entity.setDataCadastro(dto.getDataCadastro());
+
+        return entity;
     }
 
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "TB_CLIENTE")
@@ -28,6 +29,6 @@ public class ClienteEntity {
 	private String numeroCnpj;
 	
 	@Column(name = "DT_CADASTRO")
-	private String dataCadastro;
+	private Date dataCadastro;
 
 }

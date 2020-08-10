@@ -1,11 +1,11 @@
 package br.com.rd.treinamento.springboot.controller;
 
 import br.com.rd.treinamento.springboot.model.dto.ClienteDTO;
+import br.com.rd.treinamento.springboot.repository.ClienteRepository;
 import br.com.rd.treinamento.springboot.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,6 +14,9 @@ public class ClienteController {
 
     @Autowired
     ClienteService service;
+
+    @Autowired
+    private ClienteRepository repository;
 
     @GetMapping("/clientes")
     public List<ClienteDTO> buscarTodosClientes(){
@@ -25,5 +28,21 @@ public class ClienteController {
         return service.buscarClienteId(codigo);
     }
 
+    @PostMapping("/clientes")
+    public ResponseEntity inserir(@RequestBody ClienteDTO dto){
+        service.inserir(dto);
+        return ResponseEntity.ok().body(dto);
+    }
 
+    @PutMapping("/clientes")
+    public ResponseEntity atualizar(@RequestBody ClienteDTO dto){
+        service.atualizar(dto);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @DeleteMapping("/cliente/{codigo}")
+    public ResponseEntity excluirCliente(@PathVariable("codigo") Integer codigo ){
+        ClienteDTO dto = service.excluirClienteId(codigo);
+        return ResponseEntity.ok().body(dto);
+    }
 }
