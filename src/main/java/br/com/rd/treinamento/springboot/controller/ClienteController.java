@@ -1,7 +1,6 @@
 package br.com.rd.treinamento.springboot.controller;
 
 import br.com.rd.treinamento.springboot.model.dto.ClienteDTO;
-import br.com.rd.treinamento.springboot.repository.ClienteRepository;
 import br.com.rd.treinamento.springboot.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +13,6 @@ public class ClienteController {
 
     @Autowired
     ClienteService service;
-
-    @Autowired
-    private ClienteRepository repository;
 
     @GetMapping("/clientes")
     public List<ClienteDTO> buscarTodosClientes(){
